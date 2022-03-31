@@ -2,7 +2,8 @@ const mongoose = require("mongoose"); //
 
 const GameSchema = new mongoose.Schema({
   title: String,
-  image: String,
+  contentImage: String,
+  images: [String],
   description: String,
   price: Number,
   sale: Number,

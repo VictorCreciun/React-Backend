@@ -18,12 +18,29 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const { title, image, description, price, sale, salePrice, category } =
-    req.body;
+  const {
+    title,
+    contentImage,
+    images,
+    description,
+    price,
+    sale,
+    salePrice,
+    category,
+  } = req.body;
 
   console.log("request ", req.body);
 
-  new Game({ title, image, description, price, sale, salePrice, category })
+  new Game({
+    title,
+    contentImage,
+    images,
+    description,
+    price,
+    sale,
+    salePrice,
+    category,
+  })
     .save()
     .then((games) => {
       res.status(201).json(games);
@@ -35,8 +52,16 @@ router.post("/", (req, res) => {
 });
 
 router.put("/:game_id", validate_game, (req, res) => {
-  const { title, image, description, price, sale, salePrice, category } =
-    req.body;
+  const {
+    title,
+    contentImage,
+    images,
+    description,
+    price,
+    sale,
+    salePrice,
+    category,
+  } = req.body;
 
   const { game_id } = req.params;
 
