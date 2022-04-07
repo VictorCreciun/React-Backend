@@ -18,7 +18,7 @@ router.post("/", (req, res) => {
 router.get("/", (req, res) => {
   Wishlists.find()
     .populate("user", "username -_id")
-    .populate("games", "title price -_id")
+    .populate("games", "title price contentImage -_id")
     .exec()
     .then((Wishlists) => {
       res.status(200).json(Wishlists);
