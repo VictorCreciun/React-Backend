@@ -28,4 +28,19 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/wishlist/:user_id", (req, res) => {
+  const { user_id } = req.params;
+
+  Wishlists.findOne({ user: user_id })
+    .populate("user", "username -_id")
+    .populate("games", "title price contentImage -_id")
+    .exec()
+    .then((Wishlists) => {
+      res.status(200).json(Wishlists);
+    })
+    .catch((error) => {
+      res.status(500).json({ mess: "Something Went Wrong" });
+    });
+});
+
 module.exports = router;
