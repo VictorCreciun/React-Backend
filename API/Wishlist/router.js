@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
 
 router.get("/", (req, res) => {
   Wishlists.find()
-    .populate("user", "username -_id")
+    .populate("user", "name -_id")
     .populate(
       "games",
       "title price contentImage description sale salePrice category -_id"
@@ -35,7 +35,7 @@ router.get("/wishlist/:user_id", (req, res) => {
   const { user_id } = req.params;
 
   Wishlists.findOne({ user: user_id })
-    .populate("user", "username -_id")
+    .populate("user", "name -_id")
     .populate(
       "games",
       "title price contentImage description sale salePrice category -_id"
