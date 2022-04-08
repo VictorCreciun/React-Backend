@@ -18,7 +18,10 @@ router.post("/", (req, res) => {
 router.get("/", (req, res) => {
   Wishlists.find()
     .populate("user", "username -_id")
-    .populate("games", "title price contentImage -_id")
+    .populate(
+      "games",
+      "title price contentImage description sale salePrice category -_id"
+    )
     .exec()
     .then((Wishlists) => {
       res.status(200).json(Wishlists);
@@ -33,7 +36,10 @@ router.get("/wishlist/:user_id", (req, res) => {
 
   Wishlists.findOne({ user: user_id })
     .populate("user", "username -_id")
-    .populate("games", "title price contentImage -_id")
+    .populate(
+      "games",
+      "title price contentImage description sale salePrice category -_id"
+    )
     .exec()
     .then((Wishlists) => {
       res.status(200).json(Wishlists);
