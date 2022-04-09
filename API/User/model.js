@@ -5,6 +5,7 @@ const UsersSchema = new mongoose.Schema({
   password: String,
   email: String,
   wishlistCode: mongoose.Schema.Types.ObjectId,
+  cartCode: mongoose.Schema.Types.ObjectId,
   role: { type: String, default: "user" },
 });
 

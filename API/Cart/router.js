@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
 
 router.get("/", (req, res) => {
   Carts.find()
-    .populate("user", "name -_id")
+    .populate("user", "name cartCode -_id")
     .populate(
       "games",
       "title price contentImage description sale salePrice category -_id"
@@ -35,7 +35,7 @@ router.get("/cart/:user_id", (req, res) => {
   const { user_id } = req.params;
 
   Carts.findOne({ user: user_id })
-    .populate("user", "name -_id")
+    .populate("user", "name cartCode -_id")
     .populate(
       "games",
       "title price contentImage description sale salePrice category -_id"
