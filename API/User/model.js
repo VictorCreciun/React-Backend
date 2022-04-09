@@ -4,6 +4,7 @@ const UsersSchema = new mongoose.Schema({
   name: String,
   password: String,
   email: String,
+  wishlistCode: mongoose.Schema.Types.ObjectId,
   role: { type: String, default: "user" },
 });
 

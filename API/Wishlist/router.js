@@ -19,7 +19,7 @@ router.post("/", (req, res) => {
 
 router.get("/", (req, res) => {
   Wishlists.find()
-    .populate("user", "name -_id")
+    .populate("user", "name wishlistCode -_id")
     .populate(
       "games",
       "title price contentImage description sale salePrice category -_id"
@@ -42,7 +42,7 @@ router.get("/user", restrict, async (req, res, next) => {
   console.log("decoded user: ", user);
 
   Wishlists.findOne({ user: user._id })
-    .populate("user", "name -_id")
+    .populate("user", "name wishlistCode -_id")
     .populate(
       "games",
       "title price contentImage description sale salePrice category -_id"
