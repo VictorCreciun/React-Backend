@@ -57,7 +57,12 @@ router.post("/login", async (req, res) => {
       );
       return res
         .status(200)
-        .json({ mess: "Login Successful", token, role: find_user.role });
+        .json({
+          mess: "Login Successful",
+          token,
+          role: find_user.role,
+          wishlistCode: find_user.wishlistCode,
+        });
     }
   });
 });
