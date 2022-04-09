@@ -90,7 +90,7 @@ router.get("/:game_id", validate_game, (req, res) => {
     });
 });
 
-router.delete("/:game_id", validate_game, restrict, (req, res) => {
+router.delete("/:game_id", restrict, validate_game, (req, res) => {
   const { game_id } = req.params;
 
   Game.findByIdAndDelete(game_id)

@@ -11,8 +11,6 @@ const restrict = (req, res, next) => {
       if (error) {
         return res.status(401).json({ message: "Unauthorized" });
       }
-
-      console.log(decoded);
       req.decoded = decoded;
 
       next();
