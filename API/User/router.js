@@ -55,14 +55,13 @@ router.post("/login", async (req, res) => {
         { email: find_user.email },
         process.env.JWT_SECRET
       );
-      return res
-        .status(200)
-        .json({
-          mess: "Login Successful",
-          token,
-          role: find_user.role,
-          wishlistCode: find_user.wishlistCode,
-        });
+      return res.status(200).json({
+        mess: "Login Successful",
+        token,
+        role: find_user.role,
+        wishlistCode: find_user.wishlistCode,
+        cartCode: find_user.cartCode,
+      });
     }
   });
 });
