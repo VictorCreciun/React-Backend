@@ -1,6 +1,8 @@
 const express = require("express");
 const Wishlists = require("./model");
 const router = express.Router();
+const restrict = require("../Middleware/auth");
+const Users = require("../User/model");
 
 router.post("/", (req, res) => {
   const { user, games } = req.body; //
@@ -31,10 +33,15 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/wishlist/:user_id", (req, res) => {
-  const { user_id } = req.params;
+router.get("/user", restrict, async (req, res, next) => {
+  console.log(req.decoded);
 
-  Wishlists.findOne({ user: user_id })
+  const { email } = req.decoded;
+  const user = await Users.findOne({ email }).exec();
+
+  console.log("decoded user: ", user);
+
+  Wishlists.findOne({ user: user._id })
     .populate("user", "name -_id")
     .populate(
       "games",

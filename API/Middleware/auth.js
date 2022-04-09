@@ -1,4 +1,5 @@
-const jwt = require("jsonwebtoken"); //
+const jwt = require("jsonwebtoken");
+const Users = require("../User/model");
 
 const restrict = (req, res, next) => {
   const token = req.headers.authorization;
@@ -12,6 +13,7 @@ const restrict = (req, res, next) => {
       }
 
       console.log(decoded);
+      req.decoded = decoded;
 
       next();
     });
